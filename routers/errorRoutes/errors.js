@@ -1,13 +1,13 @@
 const dbErrors = (error, request, response, next) => {
-    if(error.code === ) {
-        
-    } else {
-        next(error);
-    }
+    // if(error.code === ) {
+
+    // } else {
+    //     next(error);
+    // }
 }
 
-const  customErrors = (error, request, response, next) => {
-    if(error.code && error.message) {
+const customErrors = (error, request, response, next) => {
+    if (error.code && error.message) {
         response.status(error.code).send({ message: error.message });
     } else {
         next(error);

@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const apiRouter = require("./routes/apiRouter.js");
+const apiRouter = require("./routes/apiRouter");
 const { dbErrors, customErrors, fatalErrors } = require("./errorRoutes/errors.js");
 
 //Setting up routing compilation for backend
@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 //Routing for backend and errors
-app.use("/", apiRouter);
+app.use("/api", apiRouter);
 app.use(dbErrors);
 app.use(customErrors);
 app.use(fatalErrors);
