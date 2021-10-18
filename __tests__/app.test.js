@@ -103,7 +103,7 @@ describe("cv-site /api", () => {
                 })
 
                 describe("status 404 - Not Found", () => {
-                    test.only("Returns an error when an article is not in the database", () => {
+                    test("Returns an error when an article is not in the database", () => {
                         return request(app)
                             .get("/api/articles/Not_found")
                             .expect(404)
@@ -130,6 +130,18 @@ describe("cv-site /api", () => {
                                     title: "James Bond",
                                     article: "The name's Bond... Jeremy Bond"
                                 })
+                            })
+                    })
+                })
+
+                describe("status 400 - Bad Request", () => {
+                    test("Returns an error when no data is passed to update the article with", () => {
+                        return request(app)
+                            .patch("/api/articles/James_Bond")
+                            .send({})
+                            .expect(400)
+                            .then(response => {
+                                expect(response.body.message).toBe("Invalid Data")
                             })
                     })
                 })
