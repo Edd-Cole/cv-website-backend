@@ -67,5 +67,25 @@ describe("cv-site /api", () => {
                 })
             })
         })
+
+        describe("/:title", () => {
+            describe("/ - GET", () => {
+                describe("status 200 - Success", () => {
+                    test("Returns a single article given by the article title", () => {
+                        return request(app)
+                            .get("/api/articles/James_Bond")
+                            .expect(200)
+                            .then(response => {
+                                expect(response.body.article).toEqual({
+                                    author: "Billy Bob",
+                                    date: expect.any(String),
+                                    title: "James Bond",
+                                    article: "I love Bond, I have every film ever made"
+                                })
+                            })
+                    })
+                })
+            })
+        })
     })
 })
