@@ -20,12 +20,33 @@ const fetchArticles = () => {
         })
 }
 
-const addArticle = (article) => {
+const fetchArticle = (title) => {
+    //Remove underscores and replace them with spaces
+    title = title.replace(/\_/g, " ")
+        //Connect to Database
     return db()
         .then(db => {
-            return db.collection("article")
-                .insertOne(article)
+            //Find and return the desired article
+            return db.collection("articles")
+                .findOne({ title })
+        })
+        .then(article => {
+            //Delete the _id key and return to controller
+            delete article._id;
+            return article;
         })
 }
 
-module.exports = { fetchArticles, addArticle };
+const addArticle = async(article) => {
+    //Connect to Database
+    await db()
+        .then(db => {
+            //Add in the received article
+            return db.collection("articles")
+                .insertOne(article)
+        })
+        //Using the above function, find and return the desired article
+    return fetchArticle(article.title)
+}
+
+module.exports = { fetchArticles, addArticle, fetchArticle };
