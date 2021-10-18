@@ -61,7 +61,16 @@ const editArticle = async(title, body) => {
         });
     //Lastly, return the updated article
     return fetchArticle(title);
-
 }
 
-module.exports = { fetchArticles, addArticle, fetchArticle, editArticle };
+const removeArticle = (title) => {
+    //Remove underscores and replace them with spaces
+    title = title.replace(/\_/g, " ");
+    return db()
+        .then(db => {
+            return db.collection("articles")
+                .deleteOne({ title })
+        })
+}
+
+module.exports = { fetchArticles, addArticle, fetchArticle, editArticle, removeArticle };

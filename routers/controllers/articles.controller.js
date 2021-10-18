@@ -1,4 +1,4 @@
-const { fetchArticles, addArticle, fetchArticle, editArticle } = require("../models/articles.model.js");
+const { fetchArticles, addArticle, fetchArticle, editArticle, removeArticle } = require("../models/articles.model.js");
 
 const getArticles = (request, response, next) => {
     //Invoke the model to get the articles from the database
@@ -52,4 +52,14 @@ const patchArticle = (request, response, next) => {
         })
 }
 
-module.exports = { getArticles, postArticle, getArticle, patchArticle };
+const deleteArticle = (request, response, next) => {
+    return removeArticle(request.params.title)
+        .then(() => {
+            response.sendStatus(204);
+        })
+        .catch(error => {
+            next(error)
+        })
+}
+
+module.exports = { getArticles, postArticle, getArticle, patchArticle, deleteArticle };
