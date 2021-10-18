@@ -66,6 +66,22 @@ describe("cv-site /api", () => {
                         })
                 })
             })
+
+            describe("status 400 - Bad Request", () => {
+                test("Returns an error when any information is missing in the article", () => {
+                    return request(app)
+                        .post("/api/articles")
+                        .send({
+                            author: "Tim",
+                            date: new Date(),
+                            title: "Top dog"
+                        })
+                        .expect(400)
+                        .then(response => {
+                            expect(response.body.message).toBe("Invalid Data")
+                        })
+                })
+            })
         })
 
         describe("/:title", () => {
