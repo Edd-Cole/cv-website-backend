@@ -1,0 +1,12 @@
+{
+        "cv-site api": {
+            "/api": {
+                "/": {
+                    "description": "Returns a list of all endpoints available on this api",
+                    "queries": [],
+                    "request example": null,
+                    "response example": null
+                }
+            } 
+        }
+    }
