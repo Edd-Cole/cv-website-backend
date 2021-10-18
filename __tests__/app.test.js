@@ -93,7 +93,7 @@ describe("cv-site /api", () => {
                         return request(app)
                             .patch("/api/articles/James_Bond")
                             .send({
-                                article: "The names Bond... Jeremy Bond"
+                                article: "The name's Bond... Jeremy Bond"
                             })
                             .expect(200)
                             .then(response => {
@@ -101,7 +101,7 @@ describe("cv-site /api", () => {
                                     author: "Billy Bob",
                                     date: expect.any(String),
                                     title: "James Bond",
-                                    article: "The names Bond... Jeremy Bond"
+                                    article: "The name's Bond... Jeremy Bond"
                                 })
                             })
                     })
