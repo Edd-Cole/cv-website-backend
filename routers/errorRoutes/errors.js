@@ -1,9 +1,9 @@
 const dbErrors = (error, request, response, next) => {
-    // if(error.code === ) {
+    if (error.code === "Replace with Code Here!") {
 
-    // } else {
-    //     next(error);
-    // }
+    } else {
+        next(error);
+    }
 }
 
 const customErrors = (error, request, response, next) => {

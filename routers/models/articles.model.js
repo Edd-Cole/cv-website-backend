@@ -38,6 +38,9 @@ const fetchArticle = (title) => {
 }
 
 const addArticle = async(article) => {
+    if (!article.author || !article.date || !article.title || !article.article) {
+        return Promise.reject({ code: 400, message: "Invalid Data" })
+    }
     //Connect to Database
     await db()
         .then(db => {
