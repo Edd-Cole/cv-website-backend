@@ -101,6 +101,17 @@ describe("cv-site /api", () => {
                             })
                     })
                 })
+
+                describe("status 404 - Not Found", () => {
+                    test.only("Returns an error when an article is not in the database", () => {
+                        return request(app)
+                            .get("/api/articles/Not_found")
+                            .expect(404)
+                            .then(response => {
+                                expect(response.body.message).toBe("Article Not Found")
+                            })
+                    })
+                })
             })
 
             describe("/ - PATCH", () => {
