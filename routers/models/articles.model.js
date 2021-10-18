@@ -57,6 +57,9 @@ const addArticle = async(article) => {
 }
 
 const editArticle = async(title, body) => {
+    if (!body.title && !body.article && !body.date && !body.author) {
+        return Promise.reject({ code: 400, message: "Invalid Data" })
+    }
     //Remove underscores and replace them with spaces
     title = title.replace(/\_/g, " ");
     //Connect to Database
