@@ -1,4 +1,4 @@
-const { fetchArticles, addArticle, fetchArticle } = require("../models/articles.model.js");
+const { fetchArticles, addArticle, fetchArticle, editArticle } = require("../models/articles.model.js");
 
 const getArticles = (request, response, next) => {
     //Invoke the model to get the articles from the database
@@ -39,4 +39,17 @@ const getArticle = (request, response, next) => {
         })
 }
 
-module.exports = { getArticles, postArticle, getArticle };
+const patchArticle = (request, response, next) => {
+    //Invoke model with the title extracted from the parametric endpoint
+    return editArticle(request.params.title, request.body)
+        .then(article => {
+            //If successful, return the updated article
+            response.status(200).send({ article })
+        })
+        .catch(error => {
+            //Otherwise, send an error
+            next(error)
+        })
+}
+
+module.exports = { getArticles, postArticle, getArticle, patchArticle };

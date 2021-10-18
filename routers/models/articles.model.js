@@ -34,7 +34,7 @@ const fetchArticle = (title) => {
             //Delete the _id key and return to controller
             delete article._id;
             return article;
-        })
+        });
 }
 
 const addArticle = async(article) => {
@@ -43,10 +43,25 @@ const addArticle = async(article) => {
         .then(db => {
             //Add in the received article
             return db.collection("articles")
-                .insertOne(article)
-        })
-        //Using the above function, find and return the desired article
+                .insertOne(article);
+        });
+    //Using the above function, find and return the desired article
     return fetchArticle(article.title)
 }
 
-module.exports = { fetchArticles, addArticle, fetchArticle };
+const editArticle = async(title, body) => {
+    //Remove underscores and replace them with spaces
+    title = title.replace(/\_/g, " ");
+    //Connect to Database
+    await db()
+        .then(db => {
+            //Update the article given the title and the update for the article
+            return db.collection("articles")
+                .updateOne({ title }, { $set: body })
+        });
+    //Lastly, return the updated article
+    return fetchArticle(title);
+
+}
+
+module.exports = { fetchArticles, addArticle, fetchArticle, editArticle };
