@@ -8,7 +8,7 @@ const fs = require("fs/promises");
 beforeEach(() => seed(data));
 afterAll(() => db().then(() => client.close()))
 
-describe("cv-site /api", () => {
+describe("cv-website /api", () => {
     describe("/ - GET", () => {
         describe("status 200 - Success", () => {
             test("Returns all available endpoints within the api", () => {
