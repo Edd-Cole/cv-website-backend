@@ -57,6 +57,7 @@ const addArticle = async(article) => {
 }
 
 const editArticle = async(title, body) => {
+    //If the body doesn't contain any relevant info to update the article with, return an error
     if (!body.title && !body.article && !body.date && !body.author) {
         return Promise.reject({ code: 400, message: "Invalid Data" })
     }
