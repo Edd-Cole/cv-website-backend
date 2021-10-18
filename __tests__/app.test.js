@@ -43,5 +43,29 @@ describe("cv-site /api", () => {
                 })
             })
         })
+
+        describe("/ - POST", () => {
+            describe("status 201 - Created", () => {
+                test("Returns and adds a new article into the database", () => {
+                    return request(app)
+                        .post("/api/articles")
+                        .send({
+                            author: "Jane",
+                            date: new Date(),
+                            title: "Bang",
+                            article: "That's the sound balloons make when they burst!"
+                        })
+                        .expect(201)
+                        .then(response => {
+                            expect(response.body.article).toEqual({
+                                author: "Jane",
+                                date: expect.any(String),
+                                title: "Bang",
+                                article: "That's the sound balloons make when they burst!"
+                            })
+                        })
+                })
+            })
+        })
     })
 })
