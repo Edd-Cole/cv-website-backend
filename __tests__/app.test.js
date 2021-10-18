@@ -86,6 +86,27 @@ describe("cv-site /api", () => {
                     })
                 })
             })
+
+            describe("/ - PATCH", () => {
+                describe("status 200 - Success", () => {
+                    test("Updates and returns an article given by the article title", () => {
+                        return request(app)
+                            .patch("/api/articles/James_Bond")
+                            .send({
+                                article: "The names Bond... Jeremy Bond"
+                            })
+                            .expect(200)
+                            .then(response => {
+                                expect(response.body.article).toEqual({
+                                    author: "Billy Bob",
+                                    date: expect.any(String),
+                                    title: "James Bond",
+                                    article: "The names Bond... Jeremy Bond"
+                                })
+                            })
+                    })
+                })
+            })
         })
     })
 })
