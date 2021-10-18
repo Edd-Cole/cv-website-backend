@@ -145,6 +145,20 @@ describe("cv-site /api", () => {
                             })
                     })
                 })
+
+                describe("status 404 - Not Found", () => {
+                    test("Returns an error if the article does not exist in the database", () => {
+                        return request(app)
+                            .patch("api/articles/Not_Found")
+                            .send({
+                                author: "Not in here"
+                            })
+                            .expect(404)
+                            .then(response => {
+                                expect(response.body.message).toBe("Article Not Found")
+                            })
+                    })
+                })
             })
 
             describe("/ - DELETE", () => {
