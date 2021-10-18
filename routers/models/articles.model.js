@@ -31,6 +31,10 @@ const fetchArticle = (title) => {
                 .findOne({ title })
         })
         .then(article => {
+            //If article does not exist in the database, send an error
+            if (!article) {
+                return Promise.reject({ code: 404, message: "Article Not Found" })
+            }
             //Delete the _id key and return to controller
             delete article._id;
             return article;
