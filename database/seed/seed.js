@@ -1,5 +1,4 @@
-const db = require("../seed/connection.js");
-const {} = require("../../utils/utils.js");
+const { db } = require("../connection/connection.js");
 
 async function seed(data) {
     return db()

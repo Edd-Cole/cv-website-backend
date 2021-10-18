@@ -1,4 +1,4 @@
-export const articleData = [{
+const articleData = [{
         author: "Edd Kleszcz",
         date: new Date(),
         title: "test",
@@ -17,3 +17,5 @@ export const articleData = [{
         article: "Do you get the joke?"
     }
 ]
+
+module.exports = articleData;

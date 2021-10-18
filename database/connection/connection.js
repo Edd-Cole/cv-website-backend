@@ -5,9 +5,7 @@ let client = new MongoClient(url);
 
 const ENV = process.env.NODE_ENV || "development";
 
-let dbSuffix = process.env.NODE_ENV || "";
-
-const dbName = ENV === "test" ? "cv-site-test" : "cv-site-dev";
+const dbName = ENV === "test" ? "cv-website-test" : "cv-website-dev";
 
 if (ENV === "production") {
     const uri = //Add in on hosting

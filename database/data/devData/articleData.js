@@ -1,1 +1,3 @@
-export const articleData = [];
+const articleData = [];
+
+module.exports = articleData;
