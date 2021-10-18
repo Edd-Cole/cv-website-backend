@@ -107,6 +107,16 @@ describe("cv-site /api", () => {
                     })
                 })
             })
+
+            describe("/ - DELETE", () => {
+                describe("status 204 - Success, No Content", () => {
+                    test("Deletes an article from the database, does not return anything", () => {
+                        return request(app)
+                            .delete("/api/articles/James_Bond")
+                            .expect(204)
+                    })
+                })
+            })
         })
     })
 })
