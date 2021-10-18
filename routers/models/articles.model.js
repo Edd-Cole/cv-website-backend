@@ -20,4 +20,12 @@ const fetchArticles = () => {
         })
 }
 
-module.exports = { fetchArticles };
+const addArticle = (article) => {
+    return db()
+        .then(db => {
+            return db.collection("article")
+                .insertOne(article)
+        })
+}
+
+module.exports = { fetchArticles, addArticle };
