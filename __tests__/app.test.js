@@ -4,6 +4,7 @@ const { db, client } = require("../database/connection/connection.js");
 const data = require("../database/data/testData/exports.js");
 const seed = require("../database/seed/seed.js");
 const fs = require("fs/promises");
+require("jest-sorted");
 
 beforeEach(() => seed(data));
 afterAll(() => db().then(() => client.close()))
@@ -25,7 +26,7 @@ describe("cv-website /api", () => {
     describe("/articles", () => {
         describe("/ - GET", () => {
             describe("status 200 - Success", () => {
-                test("Returns an array of all the articles in the database", () => {
+                test("Returns an array of all the articles in the database in reverse chronological order", () => {
                     return request(app)
                         .get("/api/articles")
                         .expect(200)
@@ -39,6 +40,7 @@ describe("cv-website /api", () => {
                                     article: expect.any(String)
                                 })
                             })
+                            expect(response.body.articles).toBeSortedBy("date", {descending: true})
                         })
                 })
             })
