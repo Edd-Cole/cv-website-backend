@@ -42,6 +42,10 @@ const fetchArticle = (title) => {
 }
 
 const addArticle = async(article) => {
+    //Create a date for the new article and attach it into the article object
+    const date = new Date();
+    article.date = date;
+    console.log(article)
     if (!article.author || !article.date || !article.title || !article.article) {
         return Promise.reject({ code: 400, message: "Invalid Data" })
     }
