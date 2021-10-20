@@ -8,8 +8,8 @@ const ENV = process.env.NODE_ENV || "development";
 const dbName = ENV === "test" ? "cv-website-test" : "cv-website-dev";
 
 if (ENV === "production") {
-    const uri = //Add in on hosting
-        client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    const uri = "mongodb+srv://eddkleszcz:${{secrets.MONGO_PASSWORD}}@cluster0.hzrzd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 }
 
 const db = async() => {
