@@ -1,12 +1,89 @@
 {
         "cv-site api": {
             "/api": {
-                "/": {
+                "/ - GET": {
                     "description": "Returns a list of all endpoints available on this api",
                     "queries": [],
                     "request example": null,
                     "response example": null
-                }
+                },
+                 "/articles": {
+                        "/ - GET": {
+                            "description": "Returns a list of all articles in the database in reverse chronological order",
+                            "queries": [],
+                            "request example": null,
+                            "response example": {"articles": [{
+                                "author": "Edd Kleszcz",
+                                "date": "2021/09/21",
+                                "title": "test",
+                                "article": "1 2 3 4 5 6 7 8 9 10, HELLO!"
+                            },
+                            {
+                                "author": "Billy Bob",
+                                "date": "2021/03/12",
+                                "title": "James Bond",
+                                "article": "I love Bond, I have every film ever made"
+                            },
+                            {
+                                "author": "Man in Black",
+                                "date": "2020/12/01",
+                                "title": "I'm Lost",
+                                "article": "Do you get the joke?"
+                            }
+                        ]}
+                        },
+                        "/ - POST": {
+                            "description": "Adds a new article into the database and returns the article",
+                            "queries": [],
+                            "request example": {
+                                "author": "example name",
+                                "title": "example title",
+                                "article": "example article"
+                            },
+                            "response example": {
+                                "author": "example name",
+                                "date": "2021/10/18",
+                                "title": "example title",
+                                "article": "example article"
+                            }
+                        },
+                        
+                        "/:title": {
+                            "/ - GET": {
+                                "description": "Returns an article given by the title, replace any spaces with underscores",
+                                "queries": [],
+                                "request example": null,
+                                "response example": { "article": {
+                                    "author": "example name",
+                                    "date": "2021/10/18",
+                                    "title": "example title",
+                                    "article": "example article"
+                                }}
+                            },
+
+                            "/ - PATCH": {
+                                "description": "Updates an article given its title, replace any spaces with underscores",
+                                "queries": [],
+                                "request example": {
+                                    "author": "example name, new"
+                                },
+                                "response example": { "article": {
+                                    "author": "example name, new",
+                                    "date": "2021/10/18",
+                                    "title": "example title",
+                                    "article": "example article"
+                                }}
+                            },
+
+                            "/ - DELETE": {
+                                "description": "Deletes an article given it's title",
+                                "queries": [],
+                                "request example": null,
+                                "response example": null
+                            }
+                        }
+                    }
+                
             } 
         }
     }
