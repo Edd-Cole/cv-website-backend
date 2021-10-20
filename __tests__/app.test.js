@@ -53,7 +53,6 @@ describe("cv-website /api", () => {
                         .post("/api/articles")
                         .send({
                             author: "Jane",
-                            date: new Date(),
                             title: "Bang",
                             article: "That's the sound balloons make when they burst!"
                         })
